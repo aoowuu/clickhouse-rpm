@@ -28,10 +28,10 @@
 # limitations under the License.
 
 # Git repository of Clickhouse
-CH_REPO="${CH_REPO:-https://github.com/ClickHouse/ClickHouse}"
+#CH_REPO="${CH_REPO:-https://github.com/ClickHouse/ClickHouse}"
 
 # Git version of ClickHouse that we package
-CH_VERSION="${CH_VERSION:-20.8.12.2}"
+CH_VERSION="${CH_VERSION:-19.17.6.36}"
 
 # Fill if some commits need to be cherry-picked before build
 #CH_EXTRA_COMMITS=( 54a5b801b708701b1ddbda95887465b9f7ae5740 )
@@ -293,12 +293,13 @@ function download_sources()
 	# Go older way because older versions of git (CentOS 6.9, for example) do not understand new syntax of branches etc
 	# Clone specified branch with all submodules into $SOURCES_DIR/ClickHouse-$CH_VERSION-$CH_TAG folder
 	echo "Clone ClickHouse repo"
-	git clone "${CH_REPO}" "ClickHouse-${CH_VERSION}-${CH_TAG}"
+	git clone -b backport-v19.17.6.36-stable https://github.com/TCeason/ClickHouse.git  "ClickHouse-${CH_VERSION}-${CH_TAG}"
+	#git clone "${CH_REPO}" "ClickHouse-${CH_VERSION}-${CH_TAG}"
 
 	cd "ClickHouse-${CH_VERSION}-${CH_TAG}"
 
 	echo "Checkout specific tag v${CH_VERSION}-${CH_TAG}"
-	git checkout "v${CH_VERSION}-${CH_TAG}"
+	#git checkout "v${CH_VERSION}-${CH_TAG}"
 
 	for commit in "${CH_EXTRA_COMMITS[@]}"; do
 		echo "Cherry-pick commit $commit"

@@ -267,8 +267,8 @@ cp "${BUILD_DIR}"/ClickHouse-%{version}-@CH_TAG@/debian/clickhouse.limits       
 ## 19.x cp "${BUILD_DIR}"/ClickHouse-%{version}-@CH_TAG@/dbms/programs/server/config.xml %{buildroot}/etc/clickhouse-server/
 ## 19.x cp "${BUILD_DIR}"/ClickHouse-%{version}-@CH_TAG@/dbms/programs/server/users.xml  %{buildroot}/etc/clickhouse-server/
 ## 20.x
-cp "${BUILD_DIR}"/ClickHouse-%{version}-@CH_TAG@/programs/server/config.xml %{buildroot}/etc/clickhouse-server/
-cp "${BUILD_DIR}"/ClickHouse-%{version}-@CH_TAG@/programs/server/users.xml  %{buildroot}/etc/clickhouse-server/
+cp "${BUILD_DIR}"/ClickHouse-%{version}-@CH_TAG@/dbms/programs/server/config.xml %{buildroot}/etc/clickhouse-server/
+cp "${BUILD_DIR}"/ClickHouse-%{version}-@CH_TAG@/dbms/programs/server/users.xml  %{buildroot}/etc/clickhouse-server/
 
 echo "'install' completed."
 #read -p "'install' completed. Press enter to continue"
@@ -405,7 +405,7 @@ fi
 %files test
 /usr/bin/clickhouse-test
 /usr/bin/clickhouse-test-server
-#/usr/bin/clickhouse-performance-test
+/usr/bin/clickhouse-performance-test
 # folder
 /usr/share/clickhouse-test
 %config(noreplace) /etc/clickhouse-client/client-test.xml
